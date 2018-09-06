@@ -5,9 +5,18 @@ var ipc = process.ipcMain
 
 var path = require('path');
 
-router.get('/', (req, res) => {
-    ipc.send('newUser')
+router.get('/controller', (req, res) => {
     res.sendFile(path.resolve('src/web/views/indexweb.html'));
 })
 
-module.exports = router
+router.get('/', (req, res) => {
+
+    process.newUser()
+    setTimeout(() => {
+        ipc.send('newUser')
+    }, 1000)
+
+    res.redirect('/controller')
+})
+
+module.exports = router 

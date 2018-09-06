@@ -1,17 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Casto</title>
+
+    <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
     <p id="text"></p>
     <div id="iframe"></div>
+    <div id="snackbar">New user connected to the Casto Controller!</div>
     <script>
-    
-        const {ipcRenderer} = require('electron')
+        function newUser() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className = ''
+            }, 3000);
+        }
+
+        const {
+            ipcRenderer
+        } = require('electron')
 
         ipcRenderer.on('text', (event, data) => {
             var toShow = document.getElementById('text')
@@ -24,10 +108,10 @@
         })
 
         ipcRenderer.on('newUser', (event, data) => {
-            //console.log('WARNING: New user is connected!')
+            newUser()
         })
-        
-        ipcRenderer.on('video', (event, data) => {    
+
+        ipcRenderer.on('video', (event, data) => {
             var div = document.getElementById('iframe')
             var vidID = data.video.display
 
@@ -39,10 +123,11 @@
 
             if (data.others.fullscreen !== 'on') {
                 w = 420
-                h = 315// * 2
+                h = 315 // * 2
             }
 
-            div.innerHTML = `
+            div.innerHTML =
+                `
             <iframe 
                 width="${w}" 
                 height="${h}"
@@ -81,10 +166,11 @@
 
             if (data.others.fullscreen !== 'on') {
                 w = 420
-                h = 315// * 2
+                h = 315 // * 2
             }
 
-            div.innerHTML = `
+            div.innerHTML =
+                `
             <iframe 
                 width="${w}" 
                 height="${h}"
@@ -100,4 +186,5 @@
         })
     </script>
 </body>
+
 </html>

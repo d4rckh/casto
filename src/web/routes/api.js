@@ -12,7 +12,7 @@ router.get('/sendTEXT', (req, res) => {
             clearScreen: req.query['clear']
         }
     })
-    res.redirect('/')
+    res.redirect('/controller')
 })
 
 router.get('/sendVIDEO', (req, res) => {
@@ -24,7 +24,7 @@ router.get('/sendVIDEO', (req, res) => {
             fullscreen: req.query['fullscreen']
         }
     })
-    res.redirect('/')
+    res.redirect('/controller')
 })
 
 router.get('/sendLINK', (req, res) => {
@@ -36,12 +36,12 @@ router.get('/sendLINK', (req, res) => {
             fullscreen: req.query['fullscreen']
         }
     })
-    res.redirect('/')
+    res.redirect('/controller')
 })
 
 router.get('/panic', (req, res) => {
     ipc.send('panic', null)
-    res.redirect('/')
+    res.redirect('/controller')
 })
 
 module.exports = router

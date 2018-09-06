@@ -6,8 +6,10 @@ module.exports = {
 
     app: {
         main: {
-            html: 'src/interface/main.html',
-            size: { /* to be continued... */ }
+            html: 'src/interface/main.html'
+        },
+        screen: {
+            html: 'src/interface/screen.html'
         }
     }
 

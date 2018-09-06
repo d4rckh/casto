@@ -9,9 +9,11 @@ console.log(process.config)
 let mainWindow
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 1200, height: 700})
 
-  mainWindow.loadFile(process.config.app.main.html)
+  mainWindow.loadFile(process.config.app.screen.html)
+
+  process.newUser = () => mainWindow.loadFile(process.config.app.main.html)
 
   process.ipcMain = mainWindow.webContents
 
