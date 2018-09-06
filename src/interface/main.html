@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Casto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <p id="text"></p>
+    <div id="iframe"></div>
+    <script>
+    
+        const {ipcRenderer} = require('electron')
+
+        ipcRenderer.on('text', (event, data) => {
+            var toShow = document.getElementById('text')
+            document.getElementById('iframe').innerHTML = ``
+            console.log(data)
+            if (data.others.clearScreen == 'on') {
+                text.innerHTML = ''
+            }
+            text.innerHTML += data.text.display
+        })
+
+        ipcRenderer.on('newUser', (event, data) => {
+            //console.log('WARNING: New user is connected!')
+        })
+        
+        ipcRenderer.on('video', (event, data) => {    
+            var div = document.getElementById('iframe')
+            var vidID = data.video.display
+
+            document.getElementById('text').innerHTML = ``
+            div.innerHTML = ``
+
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            if (data.others.fullscrean !== 'on') {
+                w = 420
+                h = 315// * 2
+            }
+
+            div.innerHTML = `
+            <iframe 
+                width="${w}" 
+                height="${h}"
+
+                id="video"
+
+                src="https://www.youtube.com/embed/${vidID}?autoplay=1&rel=0" 
+        
+                    allowfullscreen="allowfullscreen"
+                    mozallowfullscreen="mozallowfullscreen" 
+                    msallowfullscreen="msallowfullscreen" 
+                    oallowfullscreen="oallowfullscreen" 
+                    webkitallowfullscreen="webkitallowfullscreen"
+        
+        frameBorder="0">
+        
+            rel=0</iframe>
+            `
+
+        })
+
+        ipcRenderer.on('panic', () => {
+            document.getElementById('text').innerHTML = ``
+            document.getElementById('iframe').innerHTML = ``
+        })
+
+        ipcRenderer.on('link', (event, data) => {
+            var div = document.getElementById('iframe')
+            var link = data.link.display
+
+            document.getElementById('text').innerHTML = ``
+            div.innerHTML = ``
+
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            if (data.others.fullscrean !== 'on') {
+                w = 420
+                h = 315// * 2
+            }
+
+            div.innerHTML = `
+            <iframe 
+                width="${w}" 
+                height="${h}"
+
+                id="link"
+
+                src="${link}" 
+        
+        frameBorder="0">
+        
+            rel=0</iframe>
+            `
+        })
+    </script>
+</body>
+</html>
