@@ -13,13 +13,15 @@ function createWindow () {
 
   mainWindow.loadFile(process.config.app.main.html)
 
+  process.ipcMain = mainWindow.webContents
+
   // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', () => {
     mainWindow = null
   })
 
-  require('./web/web.js')(mainWindow.webContents)
+  require('./web/web.js')
 }
 
 app.on('ready', createWindow)

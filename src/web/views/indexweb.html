@@ -7,32 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <form action="/sendTEXT" method="get">
+    <form action="/api/sendTEXT" method="get">
         <h1>Send text</h1>
         Do you want to clear other text? <input type="checkbox" name="clear" checked> <br>
         What Text you want to send? <input type="text" name="text" placeholder="..."><br>
         What size you want the text to have? <select name="size">
-                <option value="100px">Normal</option>
-                <option value="150px">Big</option>
-                <option value="200px">Very Big</option>
-                <option value="50px">Small</option>
+                <option value="50px">Normal</option>
+                <option value="100px">Big</option>
+                <option value="150px">Very Big</option>
+                <option value="25px">Small</option>
         </select> <br> <br>
         <input type="submit" value="Submit">
     </form> <br>
-    <form action="/sendVIDEO" method="get">
+    <form action="/api/sendVIDEO" method="get">
         <h1>Send Video</h1>
         Do you want to make the youtube video fullscrean?? <input type="checkbox" name="fullscreen" checked> <br>
         Video ID: <input type="text" placeholder="XXXXXXXX" name="id"> (Some videos dont support embed)<br>
         <input type="submit" value="Submit">
     </form> 
     <br> <br>
-    <form action="/sendLINK" method="get">
+    <form action="/api/sendLINK" method="get">
         <h1>Send Link</h1>
         Do you want to make the link fullscreen?? <input type="checkbox" name="fullscreen" checked> <br>
         Link URL: <input type="text" placeholder="https://..." name="link"> (Some websites dont support iframes, like google)<br>
         <input type="submit" value="Submit">
     </form> 
     <br> <br>
-    <a href="/panic">PANIC (clear the screen)</a>
+    <a href="/api/panic">PANIC (clear the screen)</a>
 </body>
 </html>
