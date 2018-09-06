@@ -26,7 +26,7 @@ module.exports = (ipc) => {
                 display: req.query['id']
             },
             others: {
-                fullscrean: req.query['fullscrean']
+                fullscreen: req.query['fullscreen']
             }
         })
         res.redirect('/')
@@ -38,7 +38,7 @@ module.exports = (ipc) => {
                 display: req.query['link']
             },
             others: {
-                fullscrean: req.query['fullscrean']
+                fullscreen: req.query['fullscreen']
             }
         })
         res.redirect('/')
